@@ -2,27 +2,28 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from datetime import datetime
-
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_all(self, arg):
-        args = arg.split()
-        if len(args) == 0:
+        if not arg:
             print("** class name missing **")
             return
-
-        class_name = args[0]
-        if class_name not in storage.classes.keys():
+        
+        class_name = arg.split()[0]
+        if class_name not in ["BaseModel", "State", "City", "Place", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
-
-        objects = storage.all()
-        class_objects = [str(obj) for obj in objects.values()
-                         if obj.__class__.__name__ == class_name]
-        print(class_objects)
-
+        
+        all_instances = storage.all(class_name)
+        print(all_instances)
+                
     def do_show(self, arg):
         args = arg.split()
         if len(args) == 0:
@@ -107,7 +108,6 @@ class HBNBCommand(cmd.Cmd):
         """EOF command to exit the program"""
         print()
         return True
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
