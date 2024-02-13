@@ -1,4 +1,4 @@
-import uuid
+from uuid import uuid4  # Import the uuid4 function from the uuid module
 from datetime import datetime
 
 class BaseModel:
@@ -15,7 +15,7 @@ class BaseModel:
             if 'updated_at' in kwargs:
                 self.updated_at = datetime.strptime(kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
         else:
-            self.id = str(uuid.uuid4())
+            self.id = str(uuid4())  # Use uuid4 function to generate a UUID
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
 
