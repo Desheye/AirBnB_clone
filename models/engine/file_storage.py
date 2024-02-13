@@ -1,10 +1,14 @@
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
-    classes = {"BaseModel": BaseModel}  # Add classes attribute
+    classes = {
+        "BaseModel": BaseModel,
+        "User": User
+    }
 
     def all(self):
         """Returns the dictionary __objects"""
@@ -39,5 +43,3 @@ class FileStorage:
         except FileNotFoundError:
             pass
 
-storage = FileStorage()
-storage.reload()

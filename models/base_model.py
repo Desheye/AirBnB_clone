@@ -1,8 +1,8 @@
-from uuid import uuid4  # Import the uuid4 function from the uuid module
+from uuid import uuid4
 from datetime import datetime
 
 class BaseModel:
-    def __init__(self, *args, **kwargs):
+    def __init__(self, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
                 if key == '__class__':
@@ -22,9 +22,8 @@ class BaseModel:
     def __str__(self):
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
-    def save(self):
+    def save(self, storage):
         self.updated_at = datetime.now()
-        from models.engine.file_storage import storage
         storage.save()
 
     def to_dict(self):
@@ -33,4 +32,3 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
-
