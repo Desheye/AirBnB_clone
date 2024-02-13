@@ -1,43 +1,55 @@
 import unittest
 from datetime import datetime
-from models.base_model import BaseModel, MyModel
+from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
-    def test_attributes_initialized(self):
-        my_model = MyModel(89, "My First Model")
-        self.assertTrue(hasattr(my_model, 'id'))
-        self.assertTrue(hasattr(my_model, 'created_at'))
-        self.assertTrue(hasattr(my_model, 'updated_at'))
-        self.assertTrue(hasattr(my_model, 'my_number'))
-        self.assertTrue(hasattr(my_model, 'name'))
+    def test_init_without_args(self):
+        # Test initialization without arguments
+        model = BaseModel()
+        self.assertTrue(hasattr(model, 'id'))
+        self.assertTrue(hasattr(model, 'created_at'))
+        self.assertTrue(hasattr(model, 'updated_at'))
+        self.assertIsInstance(model.id, str)
+        self.assertIsInstance(model.created_at, datetime)
+        self.assertIsInstance(model.updated_at, datetime)
 
-    def test_to_dict(self):
-        my_model = MyModel(89, "My First Model")
-        my_model_dict = my_model.to_dict()
+    def test_init_with_args(self):
+        # Test initialization with arguments
+        created_at = '2024-01-01T12:00:00.000000'
+        updated_at = '2024-01-02T12:00:00.000000'
+        model = BaseModel(created_at=created_at, updated_at=updated_at)
+        self.assertEqual(model.created_at, datetime.strptime(created_at, '%Y-%m-%dT%H:%M:%S.%f'))
+        self.assertEqual(model.updated_at, datetime.strptime(updated_at, '%Y-%m-%dT%H:%M:%S.%f'))
 
-        self.assertIsInstance(my_model_dict, dict)
-        self.assertIn('my_number', my_model_dict)
-        self.assertIn('name', my_model_dict)
-        self.assertIn('__class__', my_model_dict)
-        self.assertIn('updated_at', my_model_dict)
-        self.assertIn('id', my_model_dict)
-        self.assertIn('created_at', my_model_dict)
+    def test_str_representation(self):
+        # Test string representation
+        model = BaseModel()
+        expected_str = f"[BaseModel] ({model.id}) {model.__dict__}"
+        self.assertEqual(str(model), expected_str)
 
-        # Check if __class__ is a string
-        self.assertIsInstance(my_model_dict['__class__'], str)
+    def test_save_method(self):
+        # Test save method
+        model = BaseModel()
+        initial_updated_at = model.updated_at
+        model.save()
+        self.assertNotEqual(model.updated_at, initial_updated_at)
 
-        # Check other attributes
-        self.assertIsInstance(my_model_dict['my_number'], tuple)
-        self.assertIsInstance(my_model_dict['name'], tuple)
-        self.assertIsInstance(my_model_dict['updated_at'], tuple)
-        self.assertIsInstance(my_model_dict['id'], tuple)
-        self.assertIsInstance(my_model_dict['created_at'], tuple)
-
-        # Check if datetime strings can be parsed
-        parsed_created_at = datetime.strptime(my_model_dict['created_at'][1], '%Y-%m-%dT%H:%M:%S.%f')
-        parsed_updated_at = datetime.strptime(my_model_dict['updated_at'][1], '%Y-%m-%dT%H:%M:%S.%f')
-        self.assertIsInstance(parsed_created_at, datetime)
-        self.assertIsInstance(parsed_updated_at, datetime)
+    def test_to_dict_method(self):
+        # Test to_dict method
+        model = BaseModel()
+        model_dict = model.to_dict()
+        self.assertIsInstance(model_dict, dict)
+        self.assertIn('__class__', model_dict)
+        self.assertIn('id', model_dict)
+        self.assertIn('created_at', model_dict)
+        self.assertIn('updated_at', model_dict)
+        self.assertEqual(model_dict['__class__'], 'BaseModel')
+        self.assertIsInstance(model_dict['id'], str)
+        self.assertIsInstance(model_dict['created_at'], str)
+        self.assertIsInstance(model_dict['updated_at'], str)
+        self.assertEqual(model_dict['id'], model.id)
+        self.assertEqual(model_dict['created_at'], model.created_at.isoformat())
+        self.assertEqual(model_dict['updated_at'], model.updated_at.isoformat())
 
 if __name__ == '__main__':
     unittest.main()
