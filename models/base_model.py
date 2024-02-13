@@ -24,6 +24,8 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.now()
+        from models.engine.file_storage import storage
+        storage.save()
 
     def to_dict(self):
         obj_dict = self.__dict__.copy()
