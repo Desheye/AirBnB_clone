@@ -103,6 +103,19 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
+    
+    def do_count(self, arg):
+        if not arg:
+            print("** class name missing **")
+            return
+        class_name = arg.split()[0]
+        if class_name not in ["BaseModel", "State", "City", "Place", "Amenity", "Review", "User"]:
+            print("** class doesn't exist **")
+            return
+        
+        all_instances = storage.all(class_name)
+        count = len(all_instances)
+        print(count)
 
     def do_EOF(self, arg):
         """EOF command to exit the program"""
