@@ -7,3 +7,6 @@ header{
 img{
 	margin:20px;	
 }
+header + .container{
+	margin: 0 auto;
+}
