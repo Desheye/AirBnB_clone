@@ -3,4 +3,5 @@ body{
 	flex-direction:column;
 	min-height:100vh;
 	background-color:white;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
