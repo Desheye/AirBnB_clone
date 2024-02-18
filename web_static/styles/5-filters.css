@@ -1,0 +1,52 @@
+.filters {
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+div{
+    width: 400px;
+    display: flex;
+}
+.locations{
+    border-right: 1px solid #DDDDDD;
+    height: 100%;
+}
+.locations, .amenities{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+    padding: .3rem;
+    margin: 0 .5rem;
+}
+.locations h3, .amenities h3 {
+    margin-top: 0;
+    font-weight: 600;
+}
+
+.locations h4, .amenities h4 {
+    margin: -15px 0 0; /* Adjusted margin */
+    font-weight: 400;
+    font-size: 14px;
+    width: 200px;
+}
+
+button {
+    font-size: 18px;
+    background-color: #ff5a5f;
+    color: #FFFFFF;
+    height: 48px;
+    border: 0;
+    border-radius: 4px;
+    padding: 0 20px;
+    cursor: pointer;
+    width: 200px;
+}
+
+button:hover {
+    opacity: .9;
+    transition: .3s ease-in-out;
+}
