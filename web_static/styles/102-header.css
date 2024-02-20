@@ -1,0 +1,11 @@
+@media screen and (max-width: 600px) {
+    header{
+        border-bottom: 2px #CCCCCC solid;
+        margin-bottom: 30px;
+        height: 100px;
+    }
+    img{
+        margin:20px;
+        width: 80px;	
+    }
+}

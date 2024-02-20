@@ -1,0 +1,36 @@
+@media screen and (max-width: 600px) {
+    .filters {
+        width: 90%;
+        margin: .4rem auto;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    div {
+        width: 90%;
+    }
+    
+    .locations {
+        border-right: 2px solid #DDDDDD;
+        width: 25%;
+        
+    }
+    .amenities{
+        width: 25%;
+    }
+    .locations h4,
+    .amenities h4 {
+        margin: -15px 0 0;
+        font-weight: 400;
+        font-size: 14px;
+        width: 50px;
+        overflow-x: hidden;
+    }
+
+    button {
+        font-size: 24px;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,12 @@
+@media screen and (max-width: 600px) {
+
+    body{
+        width: 90%;
+        height: 700px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr;
+        border-radius: 2rem;
+        scroll-behavior: smooth;
+    }
+}
