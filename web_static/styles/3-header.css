@@ -6,7 +6,8 @@ header{
 	margin-bottom: 20px;
 }
 img{
-	margin:20px;	
+	margin:30px;
+	padding-bottom: 1rem;	
 }
 header + .container{
 	margin: 0 auto;
