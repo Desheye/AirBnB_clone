@@ -1,0 +1,38 @@
+@media screen and (max-width: 600px) {
+    .places {
+        display: flex;
+        flex-direction:column;
+        width: 100vw;
+    }
+    
+    .places h1 {
+        text-shadow: 2px 2px beige;
+    }
+    .article-grid{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    article {
+        width: 450px;
+        display: block;
+    }
+    
+    article h2 {
+        font-size: 30px;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .information {
+        height: 80px;
+        border: 1px solid #DDDDDD; 
+        display: flex;
+        justify-content: space-between;
+    }
+    
+  
+    
+}
